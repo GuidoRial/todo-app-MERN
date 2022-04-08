@@ -11,10 +11,12 @@ const initializePassport = require("./passport-config");
 const User = require("./models/User");
 const flash = require("express-flash");
 const methodOverride = require("method-override");
+const cors = require("cors");
 
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: false }));
+app.use(cors());
 
 app.use(flash());
 app.use(
