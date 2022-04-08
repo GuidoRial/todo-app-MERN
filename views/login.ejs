@@ -1,11 +1,6 @@
 <h1>Login</h1>
-<form action="/signup" method="POST">
-    <input
-        type="text"
-        name="username"
-        placeholder="Username..."
-        name="username"
-    />
+<% if (messages.error) {%> <%= messages.error %> <% } %>
+<form action="/login" method="POST">
     <input type="email" name="email" placeholder="Email..." name="email" />
     <input
         type="password"
@@ -14,6 +9,6 @@
         name="password"
     />
 
-    <button type="submit">Sign Up</button>
+    <button type="submit">Login</button>
 </form>
 <a href="/signup">Signup</a>
