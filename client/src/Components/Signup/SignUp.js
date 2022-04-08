@@ -1,17 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const navigate = useNavigate();
+
+    const handleCreateAccount = async (e) => {
+        e.preventDefault();
+        try {
+            await axios
+                .post("http://localhost:4000/signup", {
+                    username,
+                    email,
+                    password,
+                })
+                .then((res) => {
+                    console.log("Account created");
+                    navigate("/");
+                });
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     return (
         <section className="sign-up-page">
             <h1>Sign Up</h1>
             <div className="form-container">
-                <form className="form">
+                <form className="form" onSubmit={handleCreateAccount}>
                     <input
                         className="input-field"
                         id="username"
                         type="text"
                         placeholder="Enter your username..."
+                        onChange={(e) => setUsername(e.target.value)}
                     />
 
                     <input
@@ -19,6 +46,7 @@ function SignUp() {
                         id="email"
                         type="text"
                         placeholder="Enter your e-mail..."
+                        onChange={(e) => setEmail(e.target.value)}
                     />
 
                     <input
@@ -26,6 +54,7 @@ function SignUp() {
                         id="password"
                         type="password"
                         placeholder="Enter your password..."
+                        onChange={(e) => setPassword(e.target.value)}
                     />
 
                     <button
