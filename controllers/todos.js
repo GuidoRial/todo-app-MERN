@@ -15,7 +15,18 @@ const createTodo = async (req, res) => {
     res.status(StatusCodes.CREATED).json({ todo });
 };
 
-const getTodo = async (req, res) => {};
+const getTodo = async (req, res) => {
+    const {
+        user: { userId },
+        params: { id: todoId },
+    } = req;
+    const todo = await Todo.findOne({ _id: todoId, createdBy: userId });
+    if (!todo) {
+        throw new NotFoundError(`No todo with id ${todoId}`);
+    }
+
+    res.status(StatusCodes.OK).json({ todo });
+};
 
 const deleteTodo = async (req, res) => {};
 
