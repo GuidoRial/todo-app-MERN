@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Header from "./Header/Header";
+import Footer from "./Footer/Footer";
 
 function Main({ user, setUser }) {
-    const [newTodo, setNewTodo] = useState("");
+    const [newTodoName, setNewTodoName] = useState("");
+    const [newTodoDescription, setNewTodoDescription] = useState("");
     const [todos, setTodos] = useState([]);
-    const navigate = useNavigate();
 
     useEffect(() => {
         const getAllTodos = async () => {
@@ -17,7 +19,6 @@ function Main({ user, setUser }) {
                         },
                     })
                     .then((res) => {
-                        console.log(res.data);
                         setTodos(res.data);
                     });
             } catch (err) {
@@ -32,14 +33,6 @@ function Main({ user, setUser }) {
         }
     }, []);
 
-    console.log(todos);
-
-    const handleLogOut = () => {
-        setUser(null);
-        localStorage.removeItem("user");
-        navigate("/login");
-    };
-
     const handleAddTodo = async (e) => {
         e.preventDefault();
         try {
@@ -47,7 +40,8 @@ function Main({ user, setUser }) {
                 .post(
                     "http://localhost:4000/api/v1/todos/",
                     {
-                        name: newTodo
+                        name: newTodoName,
+                        description: newTodoDescription,
                     },
                     {
                         headers: {
@@ -65,15 +59,21 @@ function Main({ user, setUser }) {
 
     return (
         <div>
-            {user?.user?.username || "Todo app"}
-            <button onClick={handleLogOut}>Log Out</button>
+            <Header user={user} setUser={setUser} />
+
             <form onSubmit={handleAddTodo}>
                 <input
                     placeholder="New Todo Name..."
-                    onChange={(e) => setNewTodo(e.target.value)}
+                    onChange={(e) => setNewTodoName(e.target.value)}
+                />
+                <input
+                    placeholder="New Todo Description..."
+                    onChange={(e) => setNewTodoDescription(e.target.value)}
                 />
                 <button type="submit">Add Todo</button>
             </form>
+
+            <Footer />
         </div>
     );
 }

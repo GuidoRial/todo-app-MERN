@@ -28,7 +28,6 @@ function SignUp({ user, setUser }) {
                     password,
                 })
                 .then((res) => {
-                    console.log("Account created", res.data);
                     navigate("/login");
                 });
         } catch (err) {

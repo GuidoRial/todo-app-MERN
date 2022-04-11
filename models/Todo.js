@@ -8,6 +8,12 @@ const TodoSchema = mongoose.Schema(
             trim: true,
             maxlength: [40, "The name cannot be more than 20 characters"],
         },
+        description: {
+            type: String,
+            required: [true, "A description must be provided"],
+            trim: true,
+            maxlength: [40, "The name cannot be more than 20 characters"],
+        },
         completed: {
             type: Boolean,
             default: false,
@@ -19,7 +25,7 @@ const TodoSchema = mongoose.Schema(
             required: [true, "Please provide user"],
         },
     },
-    { timestamps: true } // 
+    { timestamps: true } //
 );
 
 module.exports = mongoose.model("Todo", TodoSchema);
