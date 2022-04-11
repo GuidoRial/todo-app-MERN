@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -7,6 +7,14 @@ function Login({ user, setUser }) {
     const [password, setPassword] = useState("");
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const data = localStorage.getItem("user");
+        // Check if a user is stored on localStorage, if they are, then they'll be redirected to dashboard and viceversa
+        if (data) {
+            setUser(JSON.parse(data));
+        }
+    }, []);
 
     const handleLogIn = (e) => {
         e.preventDefault();
@@ -18,7 +26,7 @@ function Login({ user, setUser }) {
                 })
                 .then((res) => {
                     setUser(res.data);
-                    console.log(res.data);
+                    localStorage.setItem("user", JSON.stringify(res.data));
                     navigate("/");
                 });
         } catch (err) {

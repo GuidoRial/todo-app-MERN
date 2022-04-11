@@ -1,14 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function SignUp() {
+function SignUp({ user, setUser }) {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const data = localStorage.getItem("user");
+        // Check if a user is stored on localStorage, if they are, then they'll be redirected to dashboard and viceversa
+        if (data) {
+            setUser(JSON.parse(data));
+        }
+    }, []);
 
     const handleCreateAccount = async (e) => {
         e.preventDefault();
