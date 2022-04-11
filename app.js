@@ -19,9 +19,11 @@ app.use(cors());
 const notFoundMiddleware = require("./middleware/not-found")
 const errorHandlerMiddleware = require("./middleware/error-handler.js")
 */
-const authenticateUser = require("./middleware/authentication")
-const authRouter = require("./routes/auth")
-const todosRouter = require("./routes/todos")
+const authenticateUser = require("./middleware/authentication");
+
+// Routers
+const authRouter = require("./routes/auth");
+const todosRouter = require("./routes/todos");
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/todos", authenticateUser, todosRouter);

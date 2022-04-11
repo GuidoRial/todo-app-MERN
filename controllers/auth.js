@@ -7,8 +7,9 @@ const {
 } = require("../errors");
 
 const register = async (req, res, next) => {
-    const user = await User.create({ ...req.body });
+    const user = await User.create({ ...req.body }); //mongoose does all the validation
     const token = user.createJWT();
+    //Use this function to hash the password
     res.status(StatusCodes.CREATED).json({
         user: { username: user.username },
         token,
