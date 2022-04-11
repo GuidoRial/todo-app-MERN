@@ -28,7 +28,20 @@ const getTodo = async (req, res) => {
     res.status(StatusCodes.OK).json({ todo });
 };
 
-const deleteTodo = async (req, res) => {};
+const deleteTodo = async (req, res) => {
+    const {
+        user: { userId },
+        params: { id: todoId },
+    } = req;
+    const todo = await Todo.findOneAndRemove({
+        _id: todoId,
+        createdBy: userId,
+    });
+    if (!todo) {
+        throw new NotFoundError(`No todo with id ${todoId}`);
+    }
+    res.status(StatusCodes.OK);
+};
 
 const updateTodo = async (req, res) => {
     const {
