@@ -2,7 +2,12 @@ const Todo = require("../models/Todo");
 const { StatusCodes } = require("http-status-codes");
 const { NotFoundError } = require("../errors/");
 
-const getAllTodos = async (req, res) => {};
+const getAllTodos = async (req, res) => {
+    const todos = await Todo.find({ createdBy: req.user.userId }).sort(
+        "createdAt"
+    );
+    res.status(StatusCodes.OK).json({ todos, count: todos.length });
+};
 
 const createTodo = async (req, res) => {
     req.body.createdBy = req.user.userId;
