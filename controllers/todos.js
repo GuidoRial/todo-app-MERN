@@ -25,7 +25,7 @@ const getTodo = async (req, res) => {
         throw new NotFoundError(`No todo with id ${todoId}`);
     }
 
-    res.status(StatusCodes.OK).json( todo );
+    res.status(StatusCodes.OK).json(todo);
 };
 
 const deleteTodo = async (req, res) => {
@@ -45,13 +45,13 @@ const deleteTodo = async (req, res) => {
 
 const updateTodo = async (req, res) => {
     const {
-        body: { name },
+        body: { name, description },
         user: { userId },
         params: { id: todoId },
     } = req;
 
-    if (name === "") {
-        throw new BadRequestError("Name can't be empty");
+    if (name === "" || description === "") {
+        throw new BadRequestError("Name or description can't be empty");
     }
 
     const todo = await Todo.findByIdAndUpdate(
