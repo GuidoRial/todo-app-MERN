@@ -30,6 +30,27 @@ const getTodo = async (req, res) => {
 
 const deleteTodo = async (req, res) => {};
 
-const updateTodo = async (req, res) => {};
+const updateTodo = async (req, res) => {
+    const {
+        body: { name },
+        user: { userId },
+        params: { id: todoId },
+    } = req;
+
+    if (name === "") {
+        throw new BadRequestError("Name can't be empty");
+    }
+
+    const todo = await Todo.findByIdAndUpdate(
+        { _id: todoId, createdBy: userId },
+        req.body,
+        { new: true, runValidators: true }
+    );
+    if (!todo) {
+        throw new NotFoundError(`No todo with id ${todoId}`);
+    }
+
+    res.status(StatusCodes.OK).json({ todo });
+};
 
 module.exports = { getAllTodos, createTodo, getTodo, deleteTodo, updateTodo };
