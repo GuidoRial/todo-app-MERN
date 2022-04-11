@@ -15,10 +15,10 @@ app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: false }));
 
 app.use(cors());
-/*
-const notFoundMiddleware = require("./middleware/not-found")
-const errorHandlerMiddleware = require("./middleware/error-handler.js")
-*/
+
+const notFoundMiddleware = require("./middleware/not-found");
+const errorHandlerMiddleware = require("./middleware/error-handler.js");
+
 const authenticateUser = require("./middleware/authentication");
 
 // Routers
@@ -27,6 +27,9 @@ const todosRouter = require("./routes/todos");
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/todos", authenticateUser, todosRouter);
+
+app.use(notFoundMiddleware);
+app.use(notFoundMiddleware);
 
 const start = async () => {
     try {

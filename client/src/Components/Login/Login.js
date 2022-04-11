@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const bcrypt = require("bcryptjs");
-
-function Login() {
+function Login({ user, setUser }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -14,9 +12,13 @@ function Login() {
         e.preventDefault();
         try {
             axios
-                .post("http://localhost:4000/login", { email, password })
+                .post("http://localhost:4000/api/v1/auth/login", {
+                    email,
+                    password,
+                })
                 .then((res) => {
-                    console.log("Logged in");
+                    setUser(res.data);
+                    console.log(res.data);
                     navigate("/");
                 });
         } catch (err) {

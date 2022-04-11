@@ -14,14 +14,14 @@ function SignUp() {
         e.preventDefault();
         try {
             await axios
-                .post("http://localhost:4000/signup", {
+                .post("http://localhost:4000/api/v1/auth/register", {
                     username,
                     email,
                     password,
                 })
                 .then((res) => {
-                    console.log("Account created");
-                    navigate("/");
+                    console.log("Account created", res.data);
+                    navigate("/login");
                 });
         } catch (err) {
             console.log(err);
