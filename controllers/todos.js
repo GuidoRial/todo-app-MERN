@@ -6,7 +6,7 @@ const getAllTodos = async (req, res) => {
     const todos = await Todo.find({ createdBy: req.user.userId }).sort(
         "createdAt"
     );
-    res.status(StatusCodes.OK).json({ todos, count: todos.length });
+    res.status(StatusCodes.OK).json(todos);
 };
 
 const createTodo = async (req, res) => {
@@ -25,7 +25,7 @@ const getTodo = async (req, res) => {
         throw new NotFoundError(`No todo with id ${todoId}`);
     }
 
-    res.status(StatusCodes.OK).json({ todo });
+    res.status(StatusCodes.OK).json( todo );
 };
 
 const deleteTodo = async (req, res) => {

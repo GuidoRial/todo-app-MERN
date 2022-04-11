@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+
 import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
+
+import Todos from "./Todos/Todos";
 
 function Main({ user, setUser }) {
     const [newTodoName, setNewTodoName] = useState("");
     const [newTodoDescription, setNewTodoDescription] = useState("");
     const [todos, setTodos] = useState([]);
+    const [addTodoMode, setAddTodoMode] = useState(false);
 
     useEffect(() => {
         const getAllTodos = async () => {
@@ -20,6 +23,7 @@ function Main({ user, setUser }) {
                     })
                     .then((res) => {
                         setTodos(res.data);
+                        localStorage.setItem("todos", JSON.stringify(res.data));
                     });
             } catch (err) {
                 console.log(err);
@@ -50,7 +54,11 @@ function Main({ user, setUser }) {
                     }
                 )
                 .then((res) => {
-                    setTodos([...todos, res.data]);
+                    const data = localStorage.getItem("todos");
+                    const clone = JSON.parse(data);
+                    const newTodo = res.data.todo;
+                    setTodos([...clone, newTodo]);
+                    localStorage.setItem("todos", JSON.stringify(todos));
                 });
         } catch (err) {
             console.log(err);
@@ -61,17 +69,25 @@ function Main({ user, setUser }) {
         <div>
             <Header user={user} setUser={setUser} />
 
-            <form onSubmit={handleAddTodo}>
-                <input
-                    placeholder="New Todo Name..."
-                    onChange={(e) => setNewTodoName(e.target.value)}
-                />
-                <input
-                    placeholder="New Todo Description..."
-                    onChange={(e) => setNewTodoDescription(e.target.value)}
-                />
-                <button type="submit">Add Todo</button>
-            </form>
+            <button onClick={() => setAddTodoMode(!addTodoMode)}>
+                Add todo
+            </button>
+
+            {addTodoMode && (
+                <form onSubmit={handleAddTodo}>
+                    <input
+                        placeholder="New Todo Name..."
+                        onChange={(e) => setNewTodoName(e.target.value)}
+                    />
+                    <input
+                        placeholder="New Todo Description..."
+                        onChange={(e) => setNewTodoDescription(e.target.value)}
+                    />
+                    <button type="submit">Add Todo</button>
+                </form>
+            )}
+
+            {user && <Todos todos={todos} />}
 
             <Footer />
         </div>
