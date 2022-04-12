@@ -10,11 +10,14 @@ function Login({ user, setUser }) {
 
     useEffect(() => {
         const data = localStorage.getItem("user");
-        // Check if a user is stored on localStorage, if they are, then they'll be redirected to dashboard and viceversa
+        // Check if a user is stored on localStorage, if they are, then they'll be redirected to dashboard
         if (data) {
             setUser(JSON.parse(data));
         }
     }, []);
+
+    const demoUserEmail = "demouser@gmail.com";
+    const demoUserPassword = "imademouser";
 
     const handleLogIn = (e) => {
         e.preventDefault();
@@ -23,6 +26,23 @@ function Login({ user, setUser }) {
                 .post("http://localhost:4000/api/v1/auth/login", {
                     email,
                     password,
+                })
+                .then((res) => {
+                    setUser(res.data);
+                    localStorage.setItem("user", JSON.stringify(res.data));
+                    navigate("/");
+                });
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    const handleLoginWithDemoUser = async () => {
+        try {
+            axios
+                .post("http://localhost:4000/api/v1/auth/login", {
+                    email: demoUserEmail,
+                    password: demoUserPassword,
                 })
                 .then((res) => {
                     setUser(res.data);
@@ -62,6 +82,7 @@ function Login({ user, setUser }) {
                     >
                         Login
                     </button>
+                    <button onClick={handleLoginWithDemoUser}>DEMO USER</button>
                 </form>
                 <div className="account-check">
                     <p>Don't have an account?</p>

@@ -8,8 +8,6 @@ import Todo from "./Components/Main/Todos/Todo/Todo";
 
 function App() {
     const [user, setUser] = useState(null);
-  
-
     /* 
     If there is a user, show them the dashboard, else redirect him to login and only allow them to go to signup page
     User is stored in localStorage and each component will check on load if there's something in there.  
