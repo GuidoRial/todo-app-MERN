@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { linkStyle } from "../../../../aux";
+import "./Todo.css";
 
 function Todo({ user }) {
     const [individualTodo, setIndividualTodo] = useState(null);
@@ -78,17 +80,34 @@ function Todo({ user }) {
     }, [params.id]);
 
     return (
-        <div>
-            <Link to={"/"}>Go back</Link>
-            <button onClick={() => setEditMode(!editMode)}>Edit Todo</button>
-            <button onClick={deleteThisTodo}>Delete todo</button>
-            {individualTodo ? (
-                <p>
-                    {individualTodo.name}, {individualTodo.description}
-                </p>
-            ) : (
-                <p>Loading...</p>
-            )}
+        <section className="individual-todo-container">
+            <div className="individual-todo">
+                <h2 className="individual-todo-text">{individualTodo?.name}</h2>
+                <h4 className="individual-todo-text">
+                    {individualTodo?.description}
+                </h4>
+                <div className="button-container">
+                    <button
+                        className="individual-todo-buttons " id="editTodoButton"
+                        onClick={() => setEditMode(!editMode)}
+                    >
+                        EDIT
+                    </button>
+                    <button
+                        className="individual-todo-buttons "
+                        onClick={deleteThisTodo}
+                    >
+                        DELETE
+                    </button>
+                    <Link to={"/"} style={linkStyle}>
+                        <button className="individual-todo-buttons" id="goBackButton">
+                            CLOSE
+                        </button>
+                    </Link>
+                </div>
+            </div>
+
+            <div className="todo-footer"></div>
 
             {editMode && (
                 <form onSubmit={handleEditTodo}>
@@ -112,7 +131,7 @@ function Todo({ user }) {
                     <button type="submit">Edit Todo</button>
                 </form>
             )}
-        </div>
+        </section>
     );
 }
 

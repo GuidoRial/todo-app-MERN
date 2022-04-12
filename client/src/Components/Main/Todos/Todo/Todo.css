@@ -1,0 +1,113 @@
+.individual-todo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--white);
+}
+
+.todo-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.todo-footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    border: none;
+    width: 100%;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: flex-start;
+    padding: 0.5rem 1rem;
+}
+
+.individual-todo {
+    border: 1px solid var(--primary-color);
+    border-radius: 3px;
+    width: 80%;
+    text-align: center;
+}
+
+.individual-todo-text {
+    padding: 0.5rem 1rem;
+    color: var(--primary-color);
+}
+
+.individual-todo > h2 {
+    background-color: var(--secondary-color);
+}
+
+.button-container {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    padding: 0.5rem;
+}
+
+.individual-todo-buttons {
+    width: 5rem;
+    height: 3rem;
+    padding: 0rem 1rem;
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#editTodoButton {
+    background-color: var(--secondary-color);
+    color: black;
+}
+
+#goBackButton {
+    border: none;
+    border-radius: 3px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    font-weight: 700;
+}
+
+@media (min-width: 1000px) {
+    .individual-todo {
+        font-size: 1.5rem;
+        width: 60%;
+        height: 30%;
+    }
+
+    .individual-todo > h4 {
+        margin-top: 2rem;
+    }
+
+    .button-container {
+        margin-top: 2rem;
+        gap: 2rem;
+    }
+}
+
+@media (min-width: 1600px) {
+    .individual-todo {
+        font-size: 2rem;
+        width: 55%;
+        height: 40%;
+    }
+
+    .individual-todo > h4 {
+        margin-top: 3rem;
+    }
+
+    .button-container {
+        margin-top: 3rem;
+        gap: 2.5rem;
+    }
+
+    .individual-todo-buttons {
+        width: 9rem;
+        height: 4rem;
+        font-size: 2rem;
+    }
+}
