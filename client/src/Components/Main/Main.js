@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-
 import Header from "./Header/Header";
 
 import Todos from "./Todos/Todos";
 import "./Main.css";
+import { clearInputs } from "../../aux";
 function Main({ user, setUser }) {
     const [newTodoName, setNewTodoName] = useState("");
     const [newTodoDescription, setNewTodoDescription] = useState("");
@@ -59,6 +59,7 @@ function Main({ user, setUser }) {
                     const newTodo = res.data.todo;
                     setTodos([...clone, newTodo]);
                     localStorage.setItem("todos", JSON.stringify(todos));
+                    clearInputs();
                 });
         } catch (err) {
             console.log(err);

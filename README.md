@@ -9,5 +9,5 @@
 
 ## Things I need to do
 
-1. Replace signup and login with React
-2. Implement the CRUD functionality
+1. Edit Todo Inputs need style
+2. Add readme
