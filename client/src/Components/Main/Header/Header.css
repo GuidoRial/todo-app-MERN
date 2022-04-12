@@ -7,13 +7,19 @@ nav {
     color: var(--white);
 }
 
+.log-out-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #userName {
     color: var(--secondary-color);
 }
 
 .greeting {
     display: flex;
-    gap: 1rem;
+    gap: 0.3rem;
 }
 
 .log-out-button {
@@ -32,4 +38,22 @@ nav {
     border: 1px solid var(--secondary-color);
     background-color: var(--primary-color);
     color: var(--secondary-color);
+}
+
+@media (max-width: 375px) {
+    .todo-logo {
+        display: none;
+    }
+    nav {
+        justify-content: flex-end;
+    }
+}
+
+@media (min-width: 1400px) {
+    nav > h1 {
+        font-size: 2rem;
+    }
+    nav > h3 {
+        font-size: 1.5rem;
+    }
 }

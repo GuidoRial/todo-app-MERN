@@ -11,14 +11,16 @@ function Header({ user, setUser }) {
     };
     return (
         <nav>
-            <h1>Todo App</h1>
+            <h1 className="todo-logo">Todo App</h1>
             <div className="greeting">
                 <h3>
                     Welcome, <span id="userName">{user?.user?.username}</span>!
                 </h3>
-                <button className="log-out-button" onClick={handleLogOut}>
-                    <i className="fas fa-power-off"></i>
-                </button>
+                <div className="log-out-button-container">
+                    <button className="log-out-button" onClick={handleLogOut}>
+                        <i className="fas fa-power-off"></i>
+                    </button>
+                </div>
             </div>
         </nav>
     );
