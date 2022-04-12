@@ -40,7 +40,7 @@ const deleteTodo = async (req, res) => {
     if (!todo) {
         throw new NotFoundError(`No todo with id ${todoId}`);
     }
-    res.status(StatusCodes.OK);
+    res.status(StatusCodes.OK).json(todo);
 };
 
 const updateTodo = async (req, res) => {
