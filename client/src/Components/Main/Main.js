@@ -65,27 +65,46 @@ function Main({ user, setUser }) {
     };
 
     return (
-        <div>
+        <>
             <Header user={user} setUser={setUser} />
-            {user && <Todos todos={todos} />}
-            <button onClick={() => setAddTodoMode(!addTodoMode)}>
-                Add todo
-            </button>
+            <section className="main">
+                {user && <Todos todos={todos} />}
+                <button
+                    onClick={() => setAddTodoMode(!addTodoMode)}
+                    className="main-buttons"
+                    id="createTodoButton"
+                >
+                    New todo
+                </button>
 
-            {addTodoMode && (
-                <form onSubmit={handleAddTodo}>
-                    <input
-                        placeholder="New Todo Name..."
-                        onChange={(e) => setNewTodoName(e.target.value)}
-                    />
-                    <input
-                        placeholder="New Todo Description..."
-                        onChange={(e) => setNewTodoDescription(e.target.value)}
-                    />
-                    <button type="submit">Add Todo</button>
-                </form>
-            )}
-        </div>
+                {addTodoMode && (
+                    <form
+                        className="add-new-todo-form"
+                        onSubmit={handleAddTodo}
+                    >
+                        <input
+                            className="input-field-new-todo"
+                            placeholder="What do you need to do?"
+                            onChange={(e) => setNewTodoName(e.target.value)}
+                        />
+                        <input
+                            className="input-field-new-todo"
+                            placeholder="Todo description..."
+                            onChange={(e) =>
+                                setNewTodoDescription(e.target.value)
+                            }
+                        />
+                        <button
+                            className="main-buttons"
+                            id="sendNewTodoButton"
+                            type="submit"
+                        >
+                            Add Todo
+                        </button>
+                    </form>
+                )}
+            </section>
+        </>
     );
 }
 
