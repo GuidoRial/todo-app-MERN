@@ -7,7 +7,7 @@ function Todo({ user }) {
     const [editMode, setEditMode] = useState(false);
     const [newTodoName, setNewTodoName] = useState("");
     const [newTodoDescription, setNewTodoDescription] = useState("");
-    const [newCompletionStatus, setNewCompletionStatus] = useState(null);
+    const [newCompletionStatus, setNewCompletionStatus] = useState(false);
     console.log(newCompletionStatus);
     const navigate = useNavigate();
     let params = useParams();
@@ -37,8 +37,9 @@ function Todo({ user }) {
                 .patch(
                     `http://localhost:4000/api/v1/todos/${params.id}`,
                     {
-                        name: newTodoName, //I have to only send what I need to change, otherwise it'll fail
-                        description: newTodoDescription,
+                        name: newTodoName || individualTodo.name,
+                        description:
+                            newTodoDescription || individualTodo.description,
                         completed: newCompletionStatus,
                     },
                     {
@@ -75,7 +76,7 @@ function Todo({ user }) {
 
         getTodo();
     }, [params.id]);
-    console.log(individualTodo);
+
     return (
         <div>
             <Link to={"/"}>Go back</Link>
@@ -103,9 +104,9 @@ function Todo({ user }) {
                     />
                     <input
                         type="checkbox"
-                        value={false}
-                        onChange={() =>
-                            setNewCompletionStatus(!newCompletionStatus)
+                        defaultChecked={individualTodo?.completed}
+                        onChange={(e) =>
+                            setNewCompletionStatus(e.target.checked)
                         }
                     />
                     <button type="submit">Edit Todo</button>
