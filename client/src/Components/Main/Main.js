@@ -4,7 +4,7 @@ import axios from "axios";
 import Header from "./Header/Header";
 
 import Todos from "./Todos/Todos";
-
+import "./Main.css";
 function Main({ user, setUser }) {
     const [newTodoName, setNewTodoName] = useState("");
     const [newTodoDescription, setNewTodoDescription] = useState("");
@@ -67,7 +67,7 @@ function Main({ user, setUser }) {
     return (
         <div>
             <Header user={user} setUser={setUser} />
-
+            {user && <Todos todos={todos} />}
             <button onClick={() => setAddTodoMode(!addTodoMode)}>
                 Add todo
             </button>
@@ -85,9 +85,6 @@ function Main({ user, setUser }) {
                     <button type="submit">Add Todo</button>
                 </form>
             )}
-
-            {user && <Todos todos={todos} />}
-
         </div>
     );
 }

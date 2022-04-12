@@ -1,0 +1,34 @@
+.todo-container {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+}
+
+.todo {
+    background-color: var(--white);
+    color: var(--primary-color);
+    padding: 1rem;
+    text-align: center;
+    border: 1px solid black;
+    width: 75vw;
+}
+
+.todo:hover {
+    background-color: var(--secondary-color);
+}
+
+@media (min-width: 1000px) {
+    .todo {
+        width: 65vw;
+    }
+}
+
+@media (min-width: 1600px) {
+    .todo-container {
+        font-size: 1.5rem;
+    }
+}
