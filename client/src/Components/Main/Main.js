@@ -89,7 +89,6 @@ function Main({ user, setUser }) {
 
             {user && <Todos todos={todos} />}
 
-            <Footer />
         </div>
     );
 }

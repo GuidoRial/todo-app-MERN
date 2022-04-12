@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Footer from "../Main/Footer/Footer";
 
 function SignUp({ user, setUser }) {
     const [username, setUsername] = useState("");
@@ -12,7 +13,7 @@ function SignUp({ user, setUser }) {
 
     useEffect(() => {
         const data = localStorage.getItem("user");
-        // Check if a user is stored on localStorage, if they are, then they'll be redirected to dashboard and viceversa
+        // Check if a user is stored on localStorage, if they are, then they'll be redirected to dashboard
         if (data) {
             setUser(JSON.parse(data));
         }
@@ -77,6 +78,7 @@ function SignUp({ user, setUser }) {
                     <Link to="/login">Log In</Link>
                 </div>
             </div>
+            <Footer />
         </section>
     );
 }

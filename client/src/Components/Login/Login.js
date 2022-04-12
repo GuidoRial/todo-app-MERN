@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Footer from "../Main/Footer/Footer";
+import "./Login.css";
+import { linkStyle } from "../../aux";
 
 function Login({ user, setUser }) {
     const [email, setEmail] = useState("");
@@ -55,8 +58,8 @@ function Login({ user, setUser }) {
     };
 
     return (
-        <section className="log-in-page">
-            <h1>Log In</h1>
+        <section id="logInPage">
+            <h1 className="todo-app">Todo App</h1>
             <div className="form-container">
                 <form className="form" onSubmit={handleLogIn}>
                     <input
@@ -82,13 +85,24 @@ function Login({ user, setUser }) {
                     >
                         Login
                     </button>
-                    <button onClick={handleLoginWithDemoUser}>DEMO USER</button>
+                    <button
+                        onClick={handleLoginWithDemoUser}
+                        className="form-button"
+                        id="demoUserButton"
+                    >
+                        DEMO USER
+                    </button>
+                    <div className="account-check">
+                        <p>Don't have an account?</p>
+                        <span>
+                            <Link to="/signup" style={linkStyle}>
+                                Signup
+                            </Link>
+                        </span>
+                    </div>
                 </form>
-                <div className="account-check">
-                    <p>Don't have an account?</p>
-                    <Link to="/signup">Signup</Link>
-                </div>
             </div>
+            <Footer />
         </section>
     );
 }

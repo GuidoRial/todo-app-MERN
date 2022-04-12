@@ -1,0 +1,87 @@
+#logInPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--white);
+}
+
+.todo-app {
+    color: var(--primary-color);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    width: 18rem;
+    padding: 1rem;
+}
+
+.input-field {
+    width: 80%;
+    padding: 3px;
+    border-radius: 2px;
+    border: none;
+    border-bottom: 1px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.form-button {
+    cursor: pointer;
+    width: 50%;
+    border: 1px solid var(--primary-color);
+    border-radius: 4px;
+    height: 1.5rem;
+    font-weight: 700;
+}
+
+#actionButton {
+    color: var(--white);
+    background-color: var(--primary-color);
+}
+
+#demoUserButton {
+    border: 1px solid var(--secondary-color);
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+}
+
+.account-check {
+    display: flex;
+    gap: 0.5rem;
+}
+
+@media (min-width: 600px) {
+    .form {
+        width: 25rem;
+    }
+    .form-button {
+        height: 1.7rem;
+    }
+}
+
+@media (min-width: 1000px) {
+    .form {
+        width: 40rem;
+    }
+    .form-button {
+        width: 40%;
+        height: 2rem;
+    }
+}
+
+@media (min-width: 1500px) {
+    
+    .form {
+        width: 60rem;
+    }
+    .form-button {
+        width: 30%;
+        height: 2rem;
+    }
+}
