@@ -13,8 +13,10 @@ function Header({ user, setUser }) {
         <nav>
             <h1>Todo App</h1>
             <div className="greeting">
-                <h3>Hello, {user?.user?.username}!</h3>
-                <button onClick={handleLogOut}>
+                <h3>
+                    Welcome, <span id="userName">{user?.user?.username}</span>!
+                </h3>
+                <button className="log-out-button" onClick={handleLogOut}>
                     <i className="fas fa-power-off"></i>
                 </button>
             </div>

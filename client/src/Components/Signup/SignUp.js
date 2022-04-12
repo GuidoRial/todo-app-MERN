@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Footer from "../Main/Footer/Footer";
+import Footer from "../Footer/Footer";
+import { linkStyle } from "../../aux";
 
 function SignUp({ user, setUser }) {
     const [username, setUsername] = useState("");
@@ -10,6 +11,8 @@ function SignUp({ user, setUser }) {
     const [password, setPassword] = useState("");
 
     const navigate = useNavigate();
+
+    const disableButton = email === "" || password === "" || username === "";
 
     useEffect(() => {
         const data = localStorage.getItem("user");
@@ -37,8 +40,8 @@ function SignUp({ user, setUser }) {
     };
 
     return (
-        <section className="sign-up-page">
-            <h1>Sign Up</h1>
+        <section className="log-in-sign-up-pages">
+            <h1 className="todo-app">Todo App</h1>
             <div className="form-container">
                 <form className="form" onSubmit={handleCreateAccount}>
                     <input
@@ -66,17 +69,24 @@ function SignUp({ user, setUser }) {
                     />
 
                     <button
+                        style={
+                            disableButton
+                                ? { opacity: "0.5" }
+                                : { opacity: "1" }
+                        }
                         type="submit"
                         className="form-button"
                         id="actionButton"
                     >
                         Create Account
                     </button>
+                    <div className="account-check">
+                        <p>Already have an account?</p>
+                        <Link to="/login" style={linkStyle}>
+                            Log In
+                        </Link>
+                    </div>
                 </form>
-                <div className="account-check">
-                    <p>Already have an account?</p>
-                    <Link to="/login">Log In</Link>
-                </div>
             </div>
             <Footer />
         </section>

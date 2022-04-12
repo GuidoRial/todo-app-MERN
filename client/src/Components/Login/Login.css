@@ -1,4 +1,4 @@
-#logInPage {
+.log-in-sign-up-pages {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -67,7 +67,7 @@
 
 @media (min-width: 1000px) {
     .form {
-        width: 40rem;
+        width: 35rem;
     }
     .form-button {
         width: 40%;
@@ -76,9 +76,8 @@
 }
 
 @media (min-width: 1500px) {
-    
     .form {
-        width: 60rem;
+        width: 50rem;
     }
     .form-button {
         width: 30%;

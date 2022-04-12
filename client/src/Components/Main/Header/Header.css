@@ -1,9 +1,35 @@
 nav {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+#userName {
+    color: var(--secondary-color);
 }
 
 .greeting {
     display: flex;
     gap: 1rem;
+}
+
+.log-out-button {
+    border-radius: 50%;
+    height: 1.5rem;
+    width: 1.5rem;
+    cursor: pointer;
+    border: none;
+    background-color: var(--white);
+    color: var(--primary-color);
+    transition: color 0.25s ease-in-out;
+    transition: background-color 0.25s ease-in-out;
+}
+
+.log-out-button:hover {
+    border: 1px solid var(--secondary-color);
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
 }

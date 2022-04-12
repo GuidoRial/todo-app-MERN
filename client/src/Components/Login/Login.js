@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import Footer from "../Main/Footer/Footer";
+import Footer from "../Footer/Footer";
 import "./Login.css";
 import { linkStyle } from "../../aux";
 
@@ -10,6 +10,8 @@ function Login({ user, setUser }) {
     const [password, setPassword] = useState("");
 
     const navigate = useNavigate();
+
+    const disableButton = email === "" || password === "";
 
     useEffect(() => {
         const data = localStorage.getItem("user");
@@ -58,7 +60,7 @@ function Login({ user, setUser }) {
     };
 
     return (
-        <section id="logInPage">
+        <section className="log-in-sign-up-pages">
             <h1 className="todo-app">Todo App</h1>
             <div className="form-container">
                 <form className="form" onSubmit={handleLogIn}>
@@ -79,6 +81,11 @@ function Login({ user, setUser }) {
                     />
 
                     <button
+                        style={
+                            disableButton
+                                ? { opacity: "0.5" }
+                                : { opacity: "1" }
+                        }
                         type="submit"
                         className="form-button"
                         id="actionButton"
