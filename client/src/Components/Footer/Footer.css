@@ -2,6 +2,7 @@
     position: fixed;
     left: 0;
     bottom: 0;
+    right: 0;
     border: none;
     width: 100%;
     font-size: 1.5rem;
@@ -9,6 +10,7 @@
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
+    padding-bottom: 1rem;
 }
 
 .footer > i {

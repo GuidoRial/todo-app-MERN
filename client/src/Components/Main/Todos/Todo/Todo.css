@@ -92,15 +92,46 @@
     color: var(--white);
 }
 
+.completed-edit-todo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.form-edit-todo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-field-edit-todo {
+    width: 60%;
+    padding: 3px;
+    border-radius: 2px;
+    border: none;
+    border-bottom: 1px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+#submitEditedTodoButton {
+    margin-bottom: 1rem;
+
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+}
+
 @media (min-width: 1000px) {
     .individual-todo {
         font-size: 1.5rem;
         width: 60%;
-        height: 30%;
+        height: 60%;
     }
 
     .individual-todo > h4 {
-        margin-top: 2rem;
+        margin-top: 1.5rem;
     }
 
     .button-container {
@@ -111,23 +142,23 @@
 
 @media (min-width: 1600px) {
     .individual-todo {
-        font-size: 2rem;
-        width: 55%;
-        height: 40%;
+        font-size: 1.7rem;
+        width: 60%;
+        height: 60%;
     }
 
     .individual-todo > h4 {
-        margin-top: 3rem;
+        margin-top: 2.5rem;
     }
 
     .button-container {
-        margin-top: 3rem;
+        margin-top: 2.5rem;
         gap: 2.5rem;
     }
 
     .individual-todo-buttons {
         width: 9rem;
-        height: 4rem;
-        font-size: 2rem;
+        height: 3rem;
+        font-size: 1.6rem;
     }
 }

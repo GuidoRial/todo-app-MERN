@@ -24,7 +24,6 @@ function Todo({ user }) {
                     },
                 })
                 .then((res) => {
-                    console.log("Todo deleted successfully");
                     navigate("/");
                 });
         } catch (err) {
@@ -52,7 +51,6 @@ function Todo({ user }) {
                     }
                 )
                 .then((res) => {
-                    console.log("Todo edited successfully", res.data.todo);
                     navigate("/");
                 });
         } catch (err) {
@@ -97,7 +95,8 @@ function Todo({ user }) {
                     </button>
                     <button
                         className="individual-todo-buttons "
-                        onClick={deleteThisTodo} id="deleteTodoButton"
+                        onClick={deleteThisTodo}
+                        id="deleteTodoButton"
                     >
                         DELETE
                     </button>
@@ -108,34 +107,46 @@ function Todo({ user }) {
                         >
                             CLOSE
                         </button>
-                    </Link>
+                    </Link>{" "}
                 </div>
+                {editMode && (
+                    <form className="form-edit-todo" onSubmit={handleEditTodo}>
+                        <input
+                            className="input-field-edit-todo"
+                            type="text"
+                            placeholder="New todo name..."
+                            onChange={(e) => setNewTodoName(e.target.value)}
+                        />
+                        <input
+                            className="input-field-edit-todo"
+                            type="text"
+                            placeholder="New todo description"
+                            onChange={(e) =>
+                                setNewTodoDescription(e.target.value)
+                            }
+                        />
+                        <div className="completed-edit-todo">
+                            Completed:
+                            <input
+                                type="checkbox"
+                                defaultChecked={individualTodo?.completed}
+                                onChange={(e) =>
+                                    setNewCompletionStatus(e.target.checked)
+                                }
+                            />
+                        </div>
+                        <button
+                            type="submit"
+                            className="individual-todo-buttons"
+                            id="submitEditedTodoButton"
+                        >
+                            Edit Todo
+                        </button>
+                    </form>
+                )}
             </div>
 
             <div className="todo-footer"></div>
-
-            {editMode && (
-                <form onSubmit={handleEditTodo}>
-                    <input
-                        type="text"
-                        placeholder="New todo name..."
-                        onChange={(e) => setNewTodoName(e.target.value)}
-                    />
-                    <input
-                        type="text"
-                        placeholder="New todo description"
-                        onChange={(e) => setNewTodoDescription(e.target.value)}
-                    />
-                    <input
-                        type="checkbox"
-                        defaultChecked={individualTodo?.completed}
-                        onChange={(e) =>
-                            setNewCompletionStatus(e.target.checked)
-                        }
-                    />
-                    <button type="submit">Edit Todo</button>
-                </form>
-            )}
 
             <Footer />
         </section>

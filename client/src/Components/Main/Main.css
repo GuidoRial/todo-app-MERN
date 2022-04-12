@@ -19,6 +19,12 @@
     margin-bottom: 1rem;
 }
 
+#createTodoButton:hover {
+    color: var(--secondary-color);
+    background-color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
 .add-new-todo-form {
     display: flex;
     justify-content: center;
@@ -50,6 +56,9 @@
     .input-field-new-todo {
         width: 80%;
     }
+    #createTodoButton {
+        width: 8rem;
+    }
 }
 
 @media (min-width: 1500px) {
@@ -61,5 +70,9 @@
     }
     .add-new-todo-form {
         flex-direction: row;
+    }
+    #createTodoButton {
+        width: 10rem;
+        height: 3rem;
     }
 }
