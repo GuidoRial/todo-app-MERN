@@ -64,12 +64,32 @@
     color: black;
 }
 
-#goBackButton {
-    border: none;
-    border-radius: 3px;
+#editTodoButton:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+#deleteTodoButton {
     background-color: var(--primary-color);
     color: var(--white);
+}
+
+#deleteTodoButton:hover {
+    border: 1px solid var(--primary-color);
+    background-color: var(--white);
+    color: var(--primary-color);
+}
+
+#goBackButton {
+    border: 1px solid var(--primary-color);
+    background-color: var(--white);
+    border-radius: 3px;
     font-weight: 700;
+}
+
+#goBackButton:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
 }
 
 @media (min-width: 1000px) {

@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Todos.css";
 import { linkStyle } from "../../../aux";
+import uniqid from "uniqid";
 
 function Todos({ todos }) {
     return (
@@ -9,7 +10,7 @@ function Todos({ todos }) {
             {todos.map((todo) => (
                 <Link to={`/todos/${todo._id}`} style={linkStyle}>
                     <div
-                        key={todo._id}
+                        key={uniqid()}
                         className="todo"
                         style={{
                             textDecorationLine:

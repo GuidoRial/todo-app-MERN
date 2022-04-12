@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { linkStyle } from "../../../../aux";
 import "./Todo.css";
+import Footer from "../../../Footer/Footer";
 
 function Todo({ user }) {
     const [individualTodo, setIndividualTodo] = useState(null);
@@ -10,7 +11,7 @@ function Todo({ user }) {
     const [newTodoName, setNewTodoName] = useState("");
     const [newTodoDescription, setNewTodoDescription] = useState("");
     const [newCompletionStatus, setNewCompletionStatus] = useState(false);
-    console.log(newCompletionStatus);
+
     const navigate = useNavigate();
     let params = useParams();
 
@@ -88,19 +89,23 @@ function Todo({ user }) {
                 </h4>
                 <div className="button-container">
                     <button
-                        className="individual-todo-buttons " id="editTodoButton"
+                        className="individual-todo-buttons "
+                        id="editTodoButton"
                         onClick={() => setEditMode(!editMode)}
                     >
                         EDIT
                     </button>
                     <button
                         className="individual-todo-buttons "
-                        onClick={deleteThisTodo}
+                        onClick={deleteThisTodo} id="deleteTodoButton"
                     >
                         DELETE
                     </button>
                     <Link to={"/"} style={linkStyle}>
-                        <button className="individual-todo-buttons" id="goBackButton">
+                        <button
+                            className="individual-todo-buttons"
+                            id="goBackButton"
+                        >
                             CLOSE
                         </button>
                     </Link>
@@ -131,6 +136,8 @@ function Todo({ user }) {
                     <button type="submit">Edit Todo</button>
                 </form>
             )}
+
+            <Footer />
         </section>
     );
 }
