@@ -127,7 +127,6 @@
     .individual-todo {
         font-size: 1.5rem;
         width: 60%;
-        height: 60%;
     }
 
     .individual-todo > h4 {
@@ -143,8 +142,7 @@
 @media (min-width: 1600px) {
     .individual-todo {
         font-size: 1.7rem;
-        width: 60%;
-        height: 60%;
+        width: 40%;
     }
 
     .individual-todo > h4 {
