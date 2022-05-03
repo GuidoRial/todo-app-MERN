@@ -5,6 +5,7 @@ const path = require("path");
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
+const bodyParser = require("body-parser");
 const connectDB = require("./database/connect");
 const User = require("./models/User");
 const cors = require("cors");
@@ -15,6 +16,7 @@ app.use(express.json());
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: false }));
 
+app.use(bodyParser.json());
 app.use(cors());
 
 const notFoundMiddleware = require("./middleware/not-found");
@@ -32,10 +34,10 @@ app.use("/api/v1/todos", authenticateUser, todosRouter);
 app.use(notFoundMiddleware);
 app.use(notFoundMiddleware);
 
-app.use(express.static(path.resolve(__dirname, "./client/build")));
+app.use(express.static(path.join(__dirname, "../build")));
 
-app.get("*", function (request, response) {
-    response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../build"));
 });
 
 const start = async () => {
