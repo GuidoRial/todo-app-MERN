@@ -1,6 +1,7 @@
 require("dotenv").config();
 require("express-async-errors");
 
+const path = require("path");
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
@@ -30,6 +31,12 @@ app.use("/api/v1/todos", authenticateUser, todosRouter);
 
 app.use(notFoundMiddleware);
 app.use(notFoundMiddleware);
+
+app.use(express.static(path.resolve(__dirname, "./client/build")));
+
+app.get("*", function (request, response) {
+    response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+});
 
 const start = async () => {
     try {
