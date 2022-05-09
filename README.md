@@ -2,9 +2,17 @@
 
 ## Live Preview
 
+https://todo-app-mern-guidorial.vercel.app/
+
 ## Project description
 
 This project was meant to test me to the extent of my abilities. I already had done a todo-app in the past, but this time I made sure to create the backend on my own making this project my first full-stack project.
+
+## Challenges
+
+I already feel comfortable with the frontend, so all my issues were backend-related, although I struggled for a little bit I got everything up and running fairly quickly.
+<br>
+The only **challenge** I had was hosting this to Heroku, initially I thought I had to host front AND backend there, it took me way too long to realize that I could host the backend there, then modify my queries in the frontend using that link and then hosting the frontend to Vercel, Netlify or Firebase
 
 ## What I used
 
