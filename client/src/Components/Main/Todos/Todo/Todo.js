@@ -19,7 +19,7 @@ function Todo({ user }) {
         try {
             axios
                 .delete(
-                    `/api/v1/todos/${params.id}`,
+                    `https://my-todo-app-mern.herokuapp.com/api/v1/todos/${params.id}`,
                     {
                         headers: {
                             Authorization: `Bearer ${user.token}`,
@@ -40,7 +40,7 @@ function Todo({ user }) {
         try {
             axios
                 .patch(
-                    `/api/v1/todos/${params.id}`,
+                    `https://my-todo-app-mern.herokuapp.com/api/v1/todos/${params.id}`,
                     {
                         name: newTodoName || individualTodo.name,
                         description:
@@ -66,7 +66,7 @@ function Todo({ user }) {
             try {
                 axios
                     .get(
-                        `/api/v1/todos/${params.id}`,
+                        `https://my-todo-app-mern.herokuapp.com/api/v1/todos/${params.id}`,
                         {
                             headers: {
                                 Authorization: `Bearer ${user.token}`,
