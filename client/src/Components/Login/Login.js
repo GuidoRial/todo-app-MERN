@@ -49,7 +49,7 @@ function Login({ user, setUser }) {
         try {
             axios
                 .post(
-                    "https://my-todo-app-mern.herokuapp.com/api/v1/auth/login",
+                    "/api/v1/auth/login",
                     {
                         email: demoUserEmail,
                         password: demoUserPassword,

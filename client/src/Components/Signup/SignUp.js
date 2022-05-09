@@ -27,7 +27,7 @@ function SignUp({ user, setUser }) {
         try {
             await axios
                 .post(
-                    "https://my-todo-app-mern.herokuapp.com/api/v1/auth/register",
+                    "/api/v1/auth/register",
                     {
                         username,
                         email,

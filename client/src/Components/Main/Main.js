@@ -17,7 +17,7 @@ function Main({ user, setUser }) {
             try {
                 axios
                     .get(
-                        "https://my-todo-app-mern.herokuapp.com/api/v1/todos/",
+                        "/api/v1/todos/",
                         {
                             headers: {
                                 Authorization: `Bearer ${user.token}`,
@@ -45,7 +45,7 @@ function Main({ user, setUser }) {
         try {
             axios
                 .post(
-                    "https://my-todo-app-mern.herokuapp.com/api/v1/todos/",
+                    "/api/v1/todos/",
                     {
                         name: newTodoName,
                         description: newTodoDescription,
