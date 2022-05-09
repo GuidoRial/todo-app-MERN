@@ -16,11 +16,14 @@ function Main({ user, setUser }) {
         const getAllTodos = async () => {
             try {
                 axios
-                    .get("http://localhost:4000/api/v1/todos/", {
-                        headers: {
-                            Authorization: `Bearer ${user.token}`,
-                        },
-                    })
+                    .get(
+                        "https://my-todo-app-mern.herokuapp.com/api/v1/todos/",
+                        {
+                            headers: {
+                                Authorization: `Bearer ${user.token}`,
+                            },
+                        }
+                    )
                     .then((res) => {
                         setTodos(res.data);
                         localStorage.setItem("todos", JSON.stringify(res.data));
@@ -42,7 +45,7 @@ function Main({ user, setUser }) {
         try {
             axios
                 .post(
-                    "http://localhost:4000/api/v1/todos/",
+                    "https://my-todo-app-mern.herokuapp.com/api/v1/todos/",
                     {
                         name: newTodoName,
                         description: newTodoDescription,

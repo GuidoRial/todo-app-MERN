@@ -28,10 +28,13 @@ function Login({ user, setUser }) {
         e.preventDefault();
         try {
             axios
-                .post("http://localhost:4000/api/v1/auth/login", {
-                    email,
-                    password,
-                })
+                .post(
+                    "https://my-todo-app-mern.herokuapp.com/api/v1/auth/login",
+                    {
+                        email,
+                        password,
+                    }
+                )
                 .then((res) => {
                     setUser(res.data);
                     localStorage.setItem("user", JSON.stringify(res.data));
@@ -45,10 +48,13 @@ function Login({ user, setUser }) {
     const handleLoginWithDemoUser = async () => {
         try {
             axios
-                .post("http://localhost:4000/api/v1/auth/login", {
-                    email: demoUserEmail,
-                    password: demoUserPassword,
-                })
+                .post(
+                    "https://my-todo-app-mern.herokuapp.com/api/v1/auth/login",
+                    {
+                        email: demoUserEmail,
+                        password: demoUserPassword,
+                    }
+                )
                 .then((res) => {
                     setUser(res.data);
                     localStorage.setItem("user", JSON.stringify(res.data));

@@ -18,11 +18,14 @@ function Todo({ user }) {
     const deleteThisTodo = async () => {
         try {
             axios
-                .delete(`http://localhost:4000/api/v1/todos/${params.id}`, {
-                    headers: {
-                        Authorization: `Bearer ${user.token}`,
-                    },
-                })
+                .delete(
+                    `https://my-todo-app-mern.herokuapp.com/api/v1/todos/${params.id}`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${user.token}`,
+                        },
+                    }
+                )
                 .then((res) => {
                     navigate("/");
                 });
@@ -37,7 +40,7 @@ function Todo({ user }) {
         try {
             axios
                 .patch(
-                    `http://localhost:4000/api/v1/todos/${params.id}`,
+                    `https://my-todo-app-mern.herokuapp.com/api/v1/todos/${params.id}`,
                     {
                         name: newTodoName || individualTodo.name,
                         description:
@@ -62,11 +65,14 @@ function Todo({ user }) {
         const getTodo = async () => {
             try {
                 axios
-                    .get(`http://localhost:4000/api/v1/todos/${params.id}`, {
-                        headers: {
-                            Authorization: `Bearer ${user.token}`,
-                        },
-                    })
+                    .get(
+                        `https://my-todo-app-mern.herokuapp.com/api/v1/todos/${params.id}`,
+                        {
+                            headers: {
+                                Authorization: `Bearer ${user.token}`,
+                            },
+                        }
+                    )
                     .then((res) => {
                         setIndividualTodo(res.data);
                     });

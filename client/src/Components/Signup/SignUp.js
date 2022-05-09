@@ -26,11 +26,14 @@ function SignUp({ user, setUser }) {
         e.preventDefault();
         try {
             await axios
-                .post("http://localhost:4000/api/v1/auth/register", {
-                    username,
-                    email,
-                    password,
-                })
+                .post(
+                    "https://my-todo-app-mern.herokuapp.com/api/v1/auth/register",
+                    {
+                        username,
+                        email,
+                        password,
+                    }
+                )
                 .then((res) => {
                     navigate("/login");
                 });
