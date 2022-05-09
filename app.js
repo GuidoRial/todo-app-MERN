@@ -32,14 +32,10 @@ app.use("/api/v1/todos", authenticateUser, todosRouter);
 app.use(notFoundMiddleware);
 app.use(notFoundMiddleware);
 
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static(path.join(__dirname, "client/build")));
-    app.get("*", function (request, response) {
-        response.sendFile(
-            path.resolve(__dirname, "client/build", "index.html")
-        );
-    });
-}
+app.use(express.static(path.join(__dirname, "./client/build")));
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "./client/build"));
+});
 
 /*
 app.use(express.static(path.resolve(__dirname, "./client/build")));
