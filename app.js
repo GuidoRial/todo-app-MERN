@@ -6,7 +6,6 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const connectDB = require("./database/connect");
-const User = require("./models/User");
 const cors = require("cors");
 
 const PORT = process.env.PORT || 4000;
@@ -37,12 +36,6 @@ app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "./client/build"));
 });
 
-/*
-app.use(express.static(path.resolve(__dirname, "./client/build")));
-app.get("*", function (request, response) {
-    response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
-});
-*/
 const start = async () => {
     try {
         await connectDB(process.env.MONGO_URI);
