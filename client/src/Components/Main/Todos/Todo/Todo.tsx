@@ -18,11 +18,11 @@ type TodoType = {
 
 const Todo = ({ user }: UserAndSetUserProps) => {
     const [individualTodo, setIndividualTodo] = useState<TodoType>({
-        name: "Test",
-        completed: true,
+        name: "Loading...",
+        completed: false,
         createdAt: "today",
         createdBy: "me",
-        description: "This is a test",
+        description: "Loading...",
         __V: 0,
         _id: "string",
     });
