@@ -4,6 +4,9 @@
 
 https://todo-app-mern-guidorial.vercel.app/
 
+## TO DO
+1. Migrate backend to TypeScript
+
 ## Project description
 
 This project was meant to test me to the extent of my abilities. I already had done a todo-app in the past, but this time I made sure to create the backend on my own making this project my first full-stack project.
