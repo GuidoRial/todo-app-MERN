@@ -1,23 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, FC } from "react";
 import axios from "axios";
 
 import Header from "./Header/Header";
 
 import Todos from "./Todos/Todos";
 import "./Main.css";
-import { clearInputs } from "../../aux";
-function Main({ user, setUser }) {
-    const [newTodoName, setNewTodoName] = useState("");
-    const [newTodoDescription, setNewTodoDescription] = useState("");
-    const [todos, setTodos] = useState([]);
-    const [addTodoMode, setAddTodoMode] = useState(false);
+import { clearInputs } from "../../utils";
+import { User } from "../../interfaces/User";
+import { UserAndSetUserProps } from "../../interfaces/UserAndSetUserProps";
+const Main: FC<UserAndSetUserProps> = ({ user, setUser }) => {
+    const [newTodoName, setNewTodoName] = useState<string>("");
+    const [newTodoDescription, setNewTodoDescription] = useState<string>("");
+    const [todos, setTodos] = useState<any[]>([]);
+    const [addTodoMode, setAddTodoMode] = useState<boolean>(false);
 
     useEffect(() => {
         const getAllTodos = async () => {
             try {
                 axios
                     .get(
-                        "https://my-todo-app-mern.herokuapp.com/api/v1/todos/",
+                        "https://my-todo-app-mern.herokuapp.com/api/v1/todos",
                         {
                             headers: {
                                 Authorization: `Bearer ${user.token}`,
@@ -40,7 +42,7 @@ function Main({ user, setUser }) {
         }
     }, []);
 
-    const handleAddTodo = async (e) => {
+    const handleAddTodo = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
             axios
@@ -57,7 +59,7 @@ function Main({ user, setUser }) {
                     }
                 )
                 .then((res) => {
-                    const data = localStorage.getItem("todos");
+                    const data = localStorage.getItem("todos")!;
                     const clone = JSON.parse(data);
                     const newTodo = res.data.todo;
                     setTodos([...clone, newTodo]);
@@ -111,6 +113,6 @@ function Main({ user, setUser }) {
             </section>
         </>
     );
-}
+};
 
 export default Main;

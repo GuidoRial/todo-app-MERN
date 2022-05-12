@@ -1,24 +1,23 @@
-import React from "react";
+import React, { FC } from "react";
 import { Link } from "react-router-dom";
 import "./Todos.css";
-import { linkStyle } from "../../../aux";
-import uniqid from "uniqid";
+import { linkStyle } from "../../../utils";
+import { TodosProps } from "../../../interfaces/Todos";
 
-function Todos({ todos }) {
+const Todos: FC<TodosProps> = ({ todos }) => {
+    console.log(todos);
     return (
         <div className="todo-container">
             {todos.map((todo) => (
                 <Link to={`/todos/${todo._id}`} style={linkStyle}>
                     <div
-                        key={uniqid()}
+                        key={todo._id}
                         className="todo"
                         style={{
                             textDecorationLine:
                                 todo.completed === true
                                     ? "line-through"
                                     : "none",
-                            textDecorationStyle:
-                                todo.completed === true ? "solid" : "none",
                         }}
                     >
                         {todo.name}
@@ -27,6 +26,6 @@ function Todos({ todos }) {
             ))}
         </div>
     );
-}
+};
 
 export default Todos;

@@ -1,8 +1,9 @@
-import React from "react";
+import React, { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Header.css";
+import { UserAndSetUserProps } from "../../../interfaces/UserAndSetUserProps";
 
-function Header({ user, setUser }) {
+const Header: FC<UserAndSetUserProps> = ({ user, setUser }) => {
     const navigate = useNavigate();
     const handleLogOut = () => {
         setUser(null);
@@ -24,6 +25,6 @@ function Header({ user, setUser }) {
             </div>
         </nav>
     );
-}
+};
 
 export default Header;

@@ -3,9 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Footer from "../Footer/Footer";
 import "./Login.css";
-import { linkStyle } from "../../aux";
+import { linkStyle } from "../../utils";
 
-function Login({ user, setUser }) {
+function Login({ setUser }: { setUser: Function }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -24,10 +24,10 @@ function Login({ user, setUser }) {
     const demoUserEmail = "demouser@gmail.com";
     const demoUserPassword = "imademouser";
 
-    const handleLogIn = (e) => {
+    const handleLogIn = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            axios
+            const newUser = await axios
                 .post(
                     "https://my-todo-app-mern.herokuapp.com/api/v1/auth/login",
                     {

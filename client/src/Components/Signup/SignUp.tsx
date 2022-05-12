@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Footer from "../Footer/Footer";
-import { linkStyle } from "../../aux";
+import { linkStyle } from "../../utils";
 
-function SignUp({ user, setUser }) {
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+
+function SignUp({ setUser }: { setUser: Function }) {
+    const [username, setUsername] = useState<string>("");
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
 
     const navigate = useNavigate();
 
@@ -22,21 +23,18 @@ function SignUp({ user, setUser }) {
         }
     }, []);
 
-    const handleCreateAccount = async (e) => {
+    const handleCreateAccount = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            await axios
-                .post(
-                    "https://my-todo-app-mern.herokuapp.com/api/v1/auth/register",
-                    {
-                        username,
-                        email,
-                        password,
-                    }
-                )
-                .then((res) => {
-                    navigate("/login");
-                });
+            await axios.post(
+                "https://my-todo-app-mern.herokuapp.com/api/v1/auth/register",
+                {
+                    username,
+                    email,
+                    password,
+                }
+            );
+            navigate("/login");
         } catch (err) {
             console.log(err);
         }
