@@ -4,13 +4,33 @@ import axios from "axios";
 import { linkStyle } from "../../../../utils";
 import "./Todo.css";
 import Footer from "../../../Footer/Footer";
+import { UserAndSetUserProps } from "../../../../interfaces/UserAndSetUserProps";
 
-function Todo({ user }) {
-    const [individualTodo, setIndividualTodo] = useState(null);
-    const [editMode, setEditMode] = useState(false);
-    const [newTodoName, setNewTodoName] = useState("");
-    const [newTodoDescription, setNewTodoDescription] = useState("");
-    const [newCompletionStatus, setNewCompletionStatus] = useState(false);
+type TodoType = {
+    name: string;
+    completed: boolean;
+    createdAt: string;
+    createdBy: string;
+    description: string;
+    __V: number;
+    _id: string;
+};
+
+const Todo = ({ user }: UserAndSetUserProps) => {
+    const [individualTodo, setIndividualTodo] = useState<TodoType>({
+        name: "Test",
+        completed: true,
+        createdAt: "today",
+        createdBy: "me",
+        description: "This is a test",
+        __V: 0,
+        _id: "string",
+    });
+    const [editMode, setEditMode] = useState<boolean>(false);
+    const [newTodoName, setNewTodoName] = useState<string>("");
+    const [newTodoDescription, setNewTodoDescription] = useState<string>("");
+    const [newCompletionStatus, setNewCompletionStatus] =
+        useState<boolean>(false);
 
     const navigate = useNavigate();
     let params = useParams();
@@ -34,28 +54,26 @@ function Todo({ user }) {
         }
     };
 
-    const handleEditTodo = async (e) => {
+    const handleEditTodo = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         try {
-            axios
-                .patch(
-                    `https://my-todo-app-mern.herokuapp.com/api/v1/todos/${params.id}`,
-                    {
-                        name: newTodoName || individualTodo.name,
-                        description:
-                            newTodoDescription || individualTodo.description,
-                        completed: newCompletionStatus,
+            axios.patch(
+                `https://my-todo-app-mern.herokuapp.com/api/v1/todos/${params.id}`,
+                {
+                    name: newTodoName || individualTodo.name,
+                    description:
+                        newTodoDescription || individualTodo.description,
+                    completed: newCompletionStatus,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${user.token}`,
                     },
-                    {
-                        headers: {
-                            Authorization: `Bearer ${user.token}`,
-                        },
-                    }
-                )
-                .then((res) => {
-                    navigate("/");
-                });
+                }
+            );
+
+            navigate("/");
         } catch (err) {
             console.log(err);
         }
@@ -157,6 +175,6 @@ function Todo({ user }) {
             <Footer />
         </section>
     );
-}
+};
 
 export default Todo;

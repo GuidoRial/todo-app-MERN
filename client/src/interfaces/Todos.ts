@@ -1,4 +1,4 @@
-export interface Todo {
+export interface TodoProps {
     completed: boolean;
     createdAt: string;
     createdBy: string;
@@ -9,5 +9,5 @@ export interface Todo {
 }
 
 export interface TodosProps {
-    todos: Array<Todo>;
+    todos: Array<TodoProps>;
 }

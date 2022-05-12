@@ -6,7 +6,6 @@ import Header from "./Header/Header";
 import Todos from "./Todos/Todos";
 import "./Main.css";
 import { clearInputs } from "../../utils";
-import { User } from "../../interfaces/User";
 import { UserAndSetUserProps } from "../../interfaces/UserAndSetUserProps";
 const Main: FC<UserAndSetUserProps> = ({ user, setUser }) => {
     const [newTodoName, setNewTodoName] = useState<string>("");

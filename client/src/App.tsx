@@ -3,7 +3,7 @@ import SignUp from "./Components/Signup/SignUp";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Login from "./Components/Login/Login";
 import Main from "./Components/Main/Main";
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 import Todo from "./Components/Main/Todos/Todo/Todo";
 import { User } from "./interfaces/User";
 
@@ -38,7 +38,18 @@ function App() {
                             />
                             <Route
                                 path="/todos/:id"
-                                element={<Todo user={user} />}
+                                element={
+                                    <Todo
+                                        user={user}
+                                        setUser={function (
+                                            value: SetStateAction<User | null>
+                                        ): void {
+                                            throw new Error(
+                                                "Function not implemented."
+                                            );
+                                        }}
+                                    />
+                                }
                             />
                         </>
                     )}
