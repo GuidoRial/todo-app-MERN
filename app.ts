@@ -2,7 +2,7 @@ require("dotenv").config();
 require("express-async-errors");
 
 const path = require("path");
-import express from "express";
+import express, { Request, Response } from "express";
 const app = express();
 const morgan = require("morgan");
 const connectDB = require("./database/connect");
@@ -32,14 +32,14 @@ app.use(notFoundMiddleware);
 app.use(notFoundMiddleware);
 
 app.use(express.static(path.join(__dirname, "./client/build")));
-app.get("*", (req, res) => {
+app.get("*", (req: Request, res: Response): void => {
     res.sendFile(path.join(__dirname, "./client/build"));
 });
 
 const start = async () => {
     try {
         await connectDB(process.env.MONGO_URI);
-        app.listen(PORT, () => {
+        app.listen(PORT, (): void => {
             console.log(`listening on http://localhost:${PORT}`);
         });
     } catch (error) {

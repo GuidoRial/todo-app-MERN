@@ -6,7 +6,7 @@
     "scripts": {
         "devStart": "nodemon app.js",
         "build": "cd client && npm run build",
-        "buildTS": "tsc -p tsconfig.json",
+        "buildTS": "tsc -p .",
         "install-client": "cd client && npm install",
         "heroku-postbuild": "npm run install-client && npm run build",
         "server": "nodemon server.js",
