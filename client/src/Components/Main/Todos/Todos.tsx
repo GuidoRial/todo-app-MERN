@@ -5,7 +5,6 @@ import { linkStyle } from "../../../utils";
 import { TodosProps } from "../../../interfaces/Todos";
 
 const Todos: FC<TodosProps> = ({ todos }) => {
-    console.log(todos);
     return (
         <div className="todo-container">
             {todos.map((todo) => (
