@@ -1,4 +1,6 @@
 "use strict";
+// import { sum } from "./models/test";
+// console.log(sum(1, 4));
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -39,34 +41,31 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var test_1 = require("./models/test");
-console.log((0, test_1.sum)(1, 4));
 require("dotenv").config();
 require("express-async-errors");
-var path = require("path");
+var path_1 = __importDefault(require("path"));
 var express_1 = __importDefault(require("express"));
 var app = (0, express_1.default)();
-var morgan = require("morgan");
+var morgan_1 = __importDefault(require("morgan"));
 var connectDB = require("./database/connect");
-var cors = require("cors");
+var cors_1 = __importDefault(require("cors"));
 var PORT = process.env.PORT || 4000;
 app.use(express_1.default.json());
-app.use(morgan("dev"));
+app.use((0, morgan_1.default)("dev"));
 app.use(express_1.default.urlencoded({ extended: false }));
-app.use(cors());
-var notFoundMiddleware = require("./middleware/not-found");
-var errorHandlerMiddleware = require("./middleware/error-handler.js");
-var authenticateUser = require("./middleware/authentication");
+app.use((0, cors_1.default)());
+var not_found_1 = __importDefault(require("./middleware/not-found"));
+var authentication_1 = __importDefault(require("./middleware/authentication"));
 // Routers
-var authRouter = require("./routes/auth");
-var todosRouter = require("./routes/todos");
-app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/todos", authenticateUser, todosRouter);
-app.use(notFoundMiddleware);
-app.use(notFoundMiddleware);
-app.use(express_1.default.static(path.join(__dirname, "./client/build")));
+var auth_1 = __importDefault(require("./routes/auth"));
+var todos_1 = __importDefault(require("./routes/todos"));
+app.use("/api/v1/auth", auth_1.default);
+app.use("/api/v1/todos", authentication_1.default, todos_1.default);
+app.use(not_found_1.default);
+app.use(not_found_1.default);
+app.use(express_1.default.static(path_1.default.join(__dirname, "./client/build")));
 app.get("*", function (req, res) {
-    res.sendFile(path.join(__dirname, "./client/build"));
+    res.sendFile(path_1.default.join(__dirname, "./client/build"));
 });
 var start = function () { return __awaiter(void 0, void 0, void 0, function () {
     var error_1;

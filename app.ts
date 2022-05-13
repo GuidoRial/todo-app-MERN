@@ -1,15 +1,15 @@
-import { sum } from "./models/test";
-console.log(sum(1, 4));
+// import { sum } from "./models/test";
+// console.log(sum(1, 4));
 
 require("dotenv").config();
 require("express-async-errors");
 
-const path = require("path");
+import path from "path";
 import express, { Request, Response } from "express";
 const app = express();
-const morgan = require("morgan");
+import morgan from "morgan";
 const connectDB = require("./database/connect");
-const cors = require("cors");
+import cors from "cors";
 
 const PORT = process.env.PORT || 4000;
 
@@ -19,14 +19,14 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(cors());
 
-const notFoundMiddleware = require("./middleware/not-found");
-const errorHandlerMiddleware = require("./middleware/error-handler.js");
+import notFoundMiddleware from "./middleware/not-found";
+import errorHandlerMiddleware from "./middleware/error-handler.js";
 
-const authenticateUser = require("./middleware/authentication");
+import authenticateUser from "./middleware/authentication";
 
 // Routers
-const authRouter = require("./routes/auth");
-const todosRouter = require("./routes/todos");
+import authRouter from "./routes/auth";
+import todosRouter from "./routes/todos";
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/todos", authenticateUser, todosRouter);
