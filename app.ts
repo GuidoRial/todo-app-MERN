@@ -2,7 +2,7 @@ require("dotenv").config();
 require("express-async-errors");
 
 const path = require("path");
-const express = require("express");
+import express from "express";
 const app = express();
 const morgan = require("morgan");
 const connectDB = require("./database/connect");
