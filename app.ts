@@ -1,6 +1,3 @@
-// import { sum } from "./models/test";
-// console.log(sum(1, 4));
-
 require("dotenv").config();
 require("express-async-errors");
 
