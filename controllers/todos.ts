@@ -5,10 +5,7 @@ import { StatusCodes } from "http-status-codes";
 import { BadRequestError, NotFoundError } from "../errors/";
 import { GetUserInfoRequestInterface } from "../interfaces/GetUserAuthInfoRequestInterface";
 
-export const getAllTodos = async (
-    req: Request,
-    res: Response
-) => {
+export const getAllTodos = async (req: Request, res: Response) => {
     const todos = await Todo.find({ createdBy: req.user.userId }).sort(
         "createdAt"
     );
