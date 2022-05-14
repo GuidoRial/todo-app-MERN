@@ -1,12 +1,13 @@
-const User = require("../models/User");
-const { StatusCodes } = require("http-status-codes");
-const {
+import User from "../models/User";
+import { StatusCodes } from "http-status-codes";
+import {
     BadRequestError,
     NotFoundError,
     UnauthenticatedError,
-} = require("../errors");
+} from "../errors";
+import express, { Request, Response, NextFunction } from "express";
 
-const register = async (req, res, next) => {
+const register = async (req: Request, res: Response, next: NextFunction) => {
     const user = await User.create({ ...req.body }); //mongoose does all the validation
     const token = user.createJWT();
     //Use this function to hash the password
@@ -16,7 +17,7 @@ const register = async (req, res, next) => {
     });
 };
 
-const login = async (req, res) => {
+const login = async (req: Request, res: Response) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
@@ -39,4 +40,4 @@ const login = async (req, res) => {
     });
 };
 
-module.exports = { register, login };
+export { register, login };

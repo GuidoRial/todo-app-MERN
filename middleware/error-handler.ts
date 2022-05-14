@@ -1,5 +1,21 @@
 const { StatusCodes } = require("http-status-codes");
-const errorHandlerMiddleware = (err, req, res, next) => {
+import express, { Request, Response, NextFunction } from "express";
+type codeError = {
+    statusCode: any;
+    message: any;
+    name: string;
+    errors: { [s: string]: any } | ArrayLike<unknown>;
+    code: number;
+    keyValue: {};
+    value: any;
+};
+
+const errorHandlerMiddleware = (
+    err: codeError,
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
     let customError = {
         statusCode: err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR,
         msg: err.message || "Something went wrong, try again later",
@@ -12,9 +28,9 @@ const errorHandlerMiddleware = (err, req, res, next) => {
         customError.statusCode = 400;
     }
     if (err.code && err.code === 11000) {
-        customError.msg = `Duplicate value enteered for ${Object.keys(
+        customError.msg = `Duplicate value entered for ${Object.keys(
             err.keyValue
-        )} field, please chooose another value`;
+        )} field, please choose another value`;
         customError.statusCode = 400;
     }
     if (err.name === "CastError") {
@@ -25,4 +41,4 @@ const errorHandlerMiddleware = (err, req, res, next) => {
     return res.status(customError.statusCode).json({ msg: customError.msg });
 };
 
-module.exports = errorHandlerMiddleware;
+export default errorHandlerMiddleware;

@@ -32,4 +32,4 @@ const TodoSchema = new Schema<TodoInterface>(
     { timestamps: true } //
 );
 
-module.exports = model("Todo", TodoSchema);
+export default model("Todo", TodoSchema);

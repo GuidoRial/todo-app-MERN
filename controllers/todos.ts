@@ -1,21 +1,23 @@
-const Todo = require("../models/Todo");
-const { StatusCodes } = require("http-status-codes");
-const { NotFoundError } = require("../errors/");
+import express, { Request, Response } from "express";
 
-const getAllTodos = async (req, res) => {
+import Todo from "../models/Todo";
+import { StatusCodes } from "http-status-codes";
+import { NotFoundError } from "../errors/";
+
+const getAllTodos = async (req:Request, res:Response) => {
     const todos = await Todo.find({ createdBy: req.user.userId }).sort(
         "createdAt"
     );
     res.status(StatusCodes.OK).json(todos);
 };
 
-const createTodo = async (req, res) => {
+const createTodo = async (req: Request, res: Response) => {
     req.body.createdBy = req.user.userId;
     const todo = await Todo.create(req.body);
     res.status(StatusCodes.CREATED).json({ todo });
 };
 
-const getTodo = async (req, res) => {
+const getTodo = async (req: Request, res: Response) => {
     const {
         user: { userId },
         params: { id: todoId },
@@ -28,7 +30,7 @@ const getTodo = async (req, res) => {
     res.status(StatusCodes.OK).json(todo);
 };
 
-const deleteTodo = async (req, res) => {
+const deleteTodo = async (req: Request, res: Response) => {
     const {
         user: { userId },
         params: { id: todoId },
@@ -43,7 +45,7 @@ const deleteTodo = async (req, res) => {
     res.status(StatusCodes.OK).json(todo);
 };
 
-const updateTodo = async (req, res) => {
+const updateTodo = async (req: Request, res: Response) => {
     const {
         body: { name, description },
         user: { userId },
@@ -66,4 +68,4 @@ const updateTodo = async (req, res) => {
     res.status(StatusCodes.OK).json({ todo });
 };
 
-module.exports = { getAllTodos, createTodo, getTodo, deleteTodo, updateTodo };
+export { getAllTodos, createTodo, getTodo, deleteTodo, updateTodo };

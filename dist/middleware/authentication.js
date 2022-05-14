@@ -39,67 +39,27 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var mongoose_1 = require("mongoose");
-var bcryptjs_1 = __importDefault(require("bcryptjs"));
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-// TO DO
-var UserSchema = new mongoose_1.Schema({
-    username: {
-        type: String,
-        required: [true, "username is required"],
-        maxlength: 15,
-        minlength: 3,
-    },
-    email: {
-        type: String,
-        required: [true, "email is required"],
-        match: [
-            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-            "Please provide a valid email",
-        ],
-        unique: true,
-    },
-    password: {
-        type: String,
-        required: [true, "Please provide a password"],
-        minlength: 4,
-    },
-});
-UserSchema.pre("save", function (next) {
-    return __awaiter(this, void 0, void 0, function () {
-        var salt, _a;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
-                case 0: return [4 /*yield*/, bcryptjs_1.default.genSalt(10)];
-                case 1:
-                    salt = _b.sent();
-                    _a = this;
-                    return [4 /*yield*/, bcryptjs_1.default.hash(this.password, salt)];
-                case 2:
-                    _a.password = _b.sent();
-                    next();
-                    return [2 /*return*/];
-            }
-        });
+var index_js_1 = require("../errors/index.js");
+var auth = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
+    var authHeader, token, payload;
+    return __generator(this, function (_a) {
+        authHeader = req.headers.authorization;
+        if (!authHeader || !authHeader.startsWith("Bearer")) {
+            throw new index_js_1.UnauthenticatedError("Authentication Invalid");
+        }
+        token = authHeader.split(" ")[1];
+        try {
+            payload = jsonwebtoken_1.default.verify(token, process.env.JWT_SECRET);
+            //Attach the user to the todo routes
+            req.user = { userId: payload.userId, name: payload.name };
+            next();
+        }
+        catch (err) {
+            console.log(err);
+            throw new index_js_1.UnauthenticatedError("Authentication Invalid");
+        }
+        return [2 /*return*/];
     });
-});
-UserSchema.methods.createJWT = function () {
-    //You hash the password before saving it
-    return jsonwebtoken_1.default.sign({ userId: this._id }, process.env.JWT_SECRET, {
-        expiresIn: process.env.JWT_LIFETIME,
-    });
-};
-UserSchema.methods.comparePassword = function (candidatePassword) {
-    return __awaiter(this, void 0, void 0, function () {
-        var isMatch;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, bcryptjs_1.default.compare(candidatePassword, this.password)];
-                case 1:
-                    isMatch = _a.sent();
-                    return [2 /*return*/, isMatch];
-            }
-        });
-    });
-};
-module.exports = (0, mongoose_1.model)("User", UserSchema);
+}); };
+exports.default = auth;

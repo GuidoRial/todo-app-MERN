@@ -29,4 +29,4 @@ var TodoSchema = new mongoose_1.Schema({
     },
 }, { timestamps: true } //
 );
-module.exports = (0, mongoose_1.model)("Todo", TodoSchema);
+exports.default = (0, mongoose_1.model)("Todo", TodoSchema);
