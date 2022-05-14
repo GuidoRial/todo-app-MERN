@@ -5,7 +5,7 @@ import {
     NotFoundError,
     UnauthenticatedError,
 } from "../errors";
-import express, { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction } from "express";
 
 const register = async (req: Request, res: Response, next: NextFunction) => {
     const user = await User.create({ ...req.body }); //mongoose does all the validation
