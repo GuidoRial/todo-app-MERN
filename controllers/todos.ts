@@ -5,20 +5,23 @@ import { StatusCodes } from "http-status-codes";
 import { BadRequestError, NotFoundError } from "../errors/";
 import { GetUserInfoRequestInterface } from "../interfaces/GetUserAuthInfoRequestInterface";
 
-export const getAllTodos = async (req: GetUserInfoRequestInterface, res: Response) => {
+export const getAllTodos = async (
+    req: Request,
+    res: Response
+) => {
     const todos = await Todo.find({ createdBy: req.user.userId }).sort(
         "createdAt"
     );
     res.status(StatusCodes.OK).json(todos);
 };
 
-export const createTodo = async (req: GetUserInfoRequestInterface, res: Response) => {
+export const createTodo = async (req: Request, res: Response) => {
     req.body.createdBy = req.user.userId;
     const todo = await Todo.create(req.body);
     res.status(StatusCodes.CREATED).json({ todo });
 };
 
-export const getTodo = async (req: GetUserInfoRequestInterface, res: Response) => {
+export const getTodo = async (req: Request, res: Response) => {
     const {
         user: { userId },
         params: { id: todoId },
@@ -31,7 +34,7 @@ export const getTodo = async (req: GetUserInfoRequestInterface, res: Response) =
     res.status(StatusCodes.OK).json(todo);
 };
 
-export const deleteTodo = async (req: GetUserInfoRequestInterface, res: Response) => {
+export const deleteTodo = async (req: Request, res: Response) => {
     const {
         user: { userId },
         params: { id: todoId },
@@ -46,7 +49,7 @@ export const deleteTodo = async (req: GetUserInfoRequestInterface, res: Response
     res.status(StatusCodes.OK).json(todo);
 };
 
-export const updateTodo = async (req: GetUserInfoRequestInterface, res: Response) => {
+export const updateTodo = async (req: Request, res: Response) => {
     const {
         body: { name, description },
         user: { userId },
@@ -68,4 +71,3 @@ export const updateTodo = async (req: GetUserInfoRequestInterface, res: Response
 
     res.status(StatusCodes.OK).json({ todo });
 };
-
