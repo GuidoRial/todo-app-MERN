@@ -117,7 +117,7 @@ var updateTodo = function (req, res) { return __awaiter(void 0, void 0, void 0, 
             case 0:
                 _a = req.body, name = _a.name, description = _a.description, userId = req.user.userId, todoId = req.params.id;
                 if (name === "" || description === "") {
-                    throw new BadRequestError("Name or description can't be empty");
+                    throw new errors_1.BadRequestError("Name or description can't be empty");
                 }
                 return [4 /*yield*/, Todo_1.default.findByIdAndUpdate({ _id: todoId, createdBy: userId }, req.body, { new: true, runValidators: true })];
             case 1:

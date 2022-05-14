@@ -4,4 +4,4 @@ const connectDB = (url: string) => {
     return mongoose.connect(url);
 };
 
-module.exports = connectDB;
+export default connectDB;

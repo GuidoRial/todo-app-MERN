@@ -7,4 +7,4 @@ var mongoose_1 = __importDefault(require("mongoose"));
 var connectDB = function (url) {
     return mongoose_1.default.connect(url);
 };
-module.exports = connectDB;
+exports.default = connectDB;

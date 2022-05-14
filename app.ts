@@ -1,11 +1,12 @@
-require("dotenv").config();
 require("express-async-errors");
 
 import path from "path";
+require("dotenv").config({ path: path.join(__dirname, "..", ".env") });
+
 import express, { Request, Response } from "express";
 const app = express();
 import morgan from "morgan";
-const connectDB = require("./database/connect");
+import connectDB from "./database/connect";
 import cors from "cors";
 
 const PORT = process.env.PORT || 4000;
@@ -17,7 +18,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
 import notFoundMiddleware from "./middleware/not-found";
-import errorHandlerMiddleware from "./middleware/error-handler.js";
 
 import authenticateUser from "./middleware/authentication";
 

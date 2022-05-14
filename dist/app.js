@@ -39,13 +39,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-require("dotenv").config();
 require("express-async-errors");
 var path_1 = __importDefault(require("path"));
+require("dotenv").config({ path: path_1.default.join(__dirname, "..", ".env") });
 var express_1 = __importDefault(require("express"));
 var app = (0, express_1.default)();
 var morgan_1 = __importDefault(require("morgan"));
-var connectDB = require("./database/connect");
+var connect_1 = __importDefault(require("./database/connect"));
 var cors_1 = __importDefault(require("cors"));
 var PORT = process.env.PORT || 4000;
 app.use(express_1.default.json());
@@ -71,7 +71,7 @@ var start = function () { return __awaiter(void 0, void 0, void 0, function () {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, connectDB(process.env.MONGO_URI)];
+                return [4 /*yield*/, (0, connect_1.default)(process.env.MONGO_URI)];
             case 1:
                 _a.sent();
                 app.listen(PORT, function () {

@@ -1,23 +1,24 @@
-import express, { Request, Response } from "express";
+import { Request, Response } from "express";
 
 import Todo from "../models/Todo";
 import { StatusCodes } from "http-status-codes";
-import { NotFoundError } from "../errors/";
+import { BadRequestError, NotFoundError } from "../errors/";
+import { GetUserInfoRequestInterface } from "../interfaces/GetUserAuthInfoRequestInterface";
 
-const getAllTodos = async (req:Request, res:Response) => {
+export const getAllTodos = async (req: GetUserInfoRequestInterface, res: Response) => {
     const todos = await Todo.find({ createdBy: req.user.userId }).sort(
         "createdAt"
     );
     res.status(StatusCodes.OK).json(todos);
 };
 
-const createTodo = async (req: Request, res: Response) => {
+export const createTodo = async (req: GetUserInfoRequestInterface, res: Response) => {
     req.body.createdBy = req.user.userId;
     const todo = await Todo.create(req.body);
     res.status(StatusCodes.CREATED).json({ todo });
 };
 
-const getTodo = async (req: Request, res: Response) => {
+export const getTodo = async (req: GetUserInfoRequestInterface, res: Response) => {
     const {
         user: { userId },
         params: { id: todoId },
@@ -30,7 +31,7 @@ const getTodo = async (req: Request, res: Response) => {
     res.status(StatusCodes.OK).json(todo);
 };
 
-const deleteTodo = async (req: Request, res: Response) => {
+export const deleteTodo = async (req: GetUserInfoRequestInterface, res: Response) => {
     const {
         user: { userId },
         params: { id: todoId },
@@ -45,7 +46,7 @@ const deleteTodo = async (req: Request, res: Response) => {
     res.status(StatusCodes.OK).json(todo);
 };
 
-const updateTodo = async (req: Request, res: Response) => {
+export const updateTodo = async (req: GetUserInfoRequestInterface, res: Response) => {
     const {
         body: { name, description },
         user: { userId },
@@ -68,4 +69,3 @@ const updateTodo = async (req: Request, res: Response) => {
     res.status(StatusCodes.OK).json({ todo });
 };
 
-export { getAllTodos, createTodo, getTodo, deleteTodo, updateTodo };
