@@ -4,12 +4,13 @@
 
 https://todo-app-mern-guidorial.vercel.app/
 
-## TO DO
-1. Migrate backend to TypeScript
-
 ## Project description
 
 This project was meant to test me to the extent of my abilities. I already had done a todo-app in the past, but this time I made sure to create the backend on my own making this project my first full-stack project.
+
+### Update - May 2022
+
+I've taken upon the challenge of migrating this whole app from JavaScript to Typescript
 
 ## Challenges
 
@@ -17,17 +18,22 @@ I already feel comfortable with the frontend, so all my issues were backend-rela
 <br>
 The only **challenge** I had was hosting this to Heroku, initially I thought I had to host front AND backend there, it took me way too long to realize that I could host the backend there, then modify my queries in the frontend using that link and then hosting the frontend to Vercel, Netlify or Firebase
 
+### Update - May 2022
+
+Literally everything about migrating to TypeScript was a challenge, it's literally the first time I use it
+
 ## What I used
 
 1. HTML
 2. CSS
 3. JavaScript
-4. React
-5. Axios
-6. NodeJS
-7. Express
-8. MongoDB
-9. Mongoose
+4. TypeScript
+5. React
+6. Axios
+7. NodeJS
+8. Express
+9. MongoDB
+10. Mongoose
 
 ## Features
 
@@ -56,3 +62,8 @@ The only **challenge** I had was hosting this to Heroku, initially I thought I h
 3. MongoDB && Mongoose
     - How to create models to ensure that the necessary information is passed onto the database
     - How to connect to my database from my project
+4. TypeScript
+    - Basics of TypeScript workflow
+    - How to initialize TypeScript on an existing project
+    - How to configure tsconfig.json to better fit my needs
+    - What's an interface and what's a type
