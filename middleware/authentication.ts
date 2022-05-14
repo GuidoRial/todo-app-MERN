@@ -1,14 +1,9 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import { UnauthenticatedError } from "../errors/index.js";
-import { GetUserInfoRequestInterface } from "../interfaces/GetUserAuthInfoRequestInterface.js";
 import { JwtPayloadInterface } from "../interfaces/JwtPayloadInterface.js";
 
-const auth = async (
-    req: GetUserInfoRequestInterface,
-    res: Response,
-    next: NextFunction
-) => {
+const auth = async (req: Request, res: Response, next: NextFunction) => {
     // Check header
     const authHeader = req.headers.authorization;
     if (!authHeader || !authHeader.startsWith("Bearer")) {

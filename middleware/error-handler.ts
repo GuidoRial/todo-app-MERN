@@ -1,4 +1,4 @@
-const { StatusCodes } = require("http-status-codes");
+import { StatusCodes } from "http-status-codes";
 import express, { Request, Response, NextFunction } from "express";
 type codeError = {
     statusCode: any;

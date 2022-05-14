@@ -2,7 +2,7 @@ import { Schema, model } from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { UserInterface } from "../interfaces/UserInterface";
-// TO DO
+
 const UserSchema = new Schema<UserInterface>({
     username: {
         type: String,

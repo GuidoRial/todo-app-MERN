@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var StatusCodes = require("http-status-codes").StatusCodes;
+var http_status_codes_1 = require("http-status-codes");
 var errorHandlerMiddleware = function (err, req, res, next) {
     var customError = {
-        statusCode: err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR,
+        statusCode: err.statusCode || http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR,
         msg: err.message || "Something went wrong, try again later",
     };
     if (err.name === "ValidationError") {

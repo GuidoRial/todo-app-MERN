@@ -42,7 +42,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var mongoose_1 = require("mongoose");
 var bcryptjs_1 = __importDefault(require("bcryptjs"));
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-// TO DO
 var UserSchema = new mongoose_1.Schema({
     username: {
         type: String,
