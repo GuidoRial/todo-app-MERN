@@ -20,7 +20,7 @@ The only **challenge** I had was hosting this to Heroku, initially I thought I h
 
 ### Update - May 2022
 
-Literally everything about migrating to TypeScript was a challenge, it's literally the first time I use it
+Literally everything about migrating to TypeScript was a challenge, it's the first time I use it
 
 ## What I used
 
